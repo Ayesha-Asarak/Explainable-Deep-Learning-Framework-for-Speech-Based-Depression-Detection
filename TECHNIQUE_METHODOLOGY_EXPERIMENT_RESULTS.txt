@@ -1,0 +1,290 @@
+================================================================================
+TECHNIQUE, METHODOLOGY, EXPERIMENT AND RESULTS
+Explainable Deep Learning Framework for Speech-Based Depression Detection
+================================================================================
+Date: July 2026
+Dataset: DAIC-WOZ style clinical interview audio
+Task: Binary classification (Depressed vs Non-Depressed)
+
+================================================================================
+1. TECHNIQUE
+================================================================================
+
+1.1 Overall Technique
+- Speech-based depression detection using deep learning
+- Mel-spectrogram representation of audio
+- Convolutional Neural Network (CNN) as the primary classifier
+- Explainable AI (XAI) for model transparency
+- Optional depression subtype profile matching (research prototype)
+
+1.2 Core Techniques Used
+
+A) Acoustic Representation
+   - Mel spectrogram (128 mel bands)
+   - Log-power (dB) conversion
+   - Per-segment z-score normalisation
+
+B) Acoustic Feature Extraction (for explainability)
+   - Pitch mean and pitch standard deviation
+   - Energy mean and energy standard deviation
+   - Speech rate and pause ratio
+   - Zero-crossing rate
+   - Spectral centroid, rolloff, bandwidth
+   - MFCC coefficients 1 to 13
+
+C) Deep Learning Model
+   - Custom 3-layer CNN trained from scratch (not fine-tuned from a
+     pre-trained model)
+   - Input: mel spectrogram image-like tensor (1, 128, time)
+   - Output: probability of depression (sigmoid)
+
+D) Explainable AI Techniques
+   - Grad-CAM (Gradient-weighted Class Activation Mapping)
+   - Gradient-based acoustic feature importance
+   - Time-stamped segment explanations (exact seconds in voice)
+   - Full-recording spectrogram highlighting
+
+E) Optional Extension
+   - Depression subtype profile matching for:
+     MDD, Dysthymia, Bipolar Depression, SAD, Postpartum Depression,
+     Psychotic Depression, Situational/Reactive Depression
+   - Note: This is profile matching, NOT supervised subtype diagnosis
+
+
+================================================================================
+2. METHODOLOGY
+================================================================================
+
+2.1 Data Collection
+- Publicly available DAIC-WOZ style interview recordings
+- Labels based on clinical depression assessments (PHQ-style)
+- Folder structure:
+    depressed/       -> 5 participants
+    non depressed/   -> 4 participants
+- Total participants: 9
+
+2.2 Preprocessing
+Step 1: Load audio at 16,000 Hz (mono)
+Step 2: Remove leading/trailing silence (top_db = 25)
+Step 3: Peak normalisation (max amplitude = 1.0)
+Step 4: Segment audio into fixed windows:
+        - Segment duration = 3.0 seconds
+        - Overlap = 50%
+Step 5: Training constraints:
+        - Max duration per file = 60 seconds
+        - Max segments per participant = 12
+
+2.3 Feature Extraction
+A) For CNN classification:
+   - Compute mel spectrogram
+   - Parameters:
+       Sample rate   = 16000 Hz
+       n_fft         = 2048
+       hop_length    = 512
+       n_mels        = 128
+   - Convert to log-mel (dB) and normalise
+
+B) For explainability:
+   - Extract 23 acoustic features per segment
+   - Standardise features using StandardScaler
+
+2.4 Model Design
+
+Primary Model: DepressionCNN
+---------------------------------------------------------
+Input  : Mel spectrogram (batch, 1, 128, T)
+Layer1 : Conv2d(1->32) + BatchNorm + ReLU + MaxPool(2x2)
+Layer2 : Conv2d(32->64) + BatchNorm + ReLU + MaxPool(2x2)
+Layer3 : Conv2d(64->128)+ BatchNorm + ReLU + MaxPool(2x2)
+         (Grad-CAM target layer)
+Pool   : AdaptiveAvgPool(4x4) -> Flatten(2048)
+FC1    : Linear(2048->128) + ReLU + Dropout(0.4)
+FC2    : Linear(128->1) -> logit -> sigmoid
+Output : P(Depressed)
+
+Auxiliary Model: FeatureClassifier (MLP)
+---------------------------------------------------------
+Input  : 23 acoustic features
+Layer1 : Linear(23->64) + ReLU + Dropout(0.3)
+Layer2 : Linear(64->32) + ReLU
+Layer3 : Linear(32->1)
+Purpose: Feature importance for explanations
+
+2.5 Explainability Methodology
+1) Grad-CAM on last convolutional layer of CNN
+2) Highlight important time-frequency regions on spectrogram
+3) Rank acoustic features by importance
+4) Generate natural language explanations with exact timestamps
+   Example: "At 16s-19s: low vocal energy and longer pauses"
+5) Plot full recording spectrogram with red/green highlighted regions
+
+
+================================================================================
+3. EXPERIMENT
+================================================================================
+
+3.1 Experimental Setup
+- Programming language : Python 3.9+
+- Deep learning library: PyTorch
+- Audio library        : Librosa
+- Machine learning     : scikit-learn
+- Backend/UI           : FastAPI + Web frontend
+- Device               : CPU (CUDA if available)
+
+3.2 Dataset Used in Experiment
+- Participants         : 9
+- Depressed            : 5
+- Non-depressed        : 4
+- Total segments       : 108
+- Depressed segments   : 60
+- Non-depressed segments: 48
+- Segment length       : 3 seconds
+- Overlap              : 50%
+
+3.3 Data Split Strategy
+- Participant-level split (to avoid data leakage)
+- Test ratio approximately 22%
+- All segments from one participant stay in the same split
+- Random seed = 42
+
+3.4 Training Configuration
+- Loss function        : BCEWithLogitsLoss
+- Optimiser            : Adam
+- CNN learning rate    : 0.001
+- Weight decay         : 0.0001
+- Batch size           : 8
+- CNN epochs           : 12
+- Deployment refinement: 8 epochs on full data (learning rate 0.0005)
+- Feature MLP epochs   : 30
+- Decision threshold   : 0.5
+
+3.5 Training Phases
+Phase 1: Train DepressionCNN on training participants (12 epochs)
+Phase 2: Evaluate on held-out test participants
+Phase 3: Refine best model on full dataset (8 epochs)
+Phase 4: Save deployment model (models/depression_cnn.pt)
+Phase 5: Train FeatureClassifier MLP and save scaler/model
+
+3.6 Inference Experiment
+For uploaded audio:
+1) Preprocess and segment into 3-second windows
+2) Predict probability for each segment using CNN
+3) Final probability = average of all segment probabilities
+4) Final label:
+   - Depressed if average >= 0.5
+   - Non-Depressed otherwise
+5) Generate Grad-CAM, spectrogram, timeline and feature explanations
+
+3.7 Evaluation Metrics
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+
+
+================================================================================
+4. RESULTS
+================================================================================
+
+4.1 Quantitative Test Results (Held-out Participants)
+---------------------------------------------------------
+Metric        Value
+---------------------------------------------------------
+Accuracy      0.750  (75.0%)
+Precision     1.000  (100%)
+Recall        0.750  (75.0%)
+F1-Score      0.857  (85.7%)
+---------------------------------------------------------
+
+Source file: models/training_metadata.json
+Segments used: 108
+Participants: 9
+
+4.2 Interpretation of Metrics
+- Accuracy 75%: Overall correct classification rate on held-out segments
+- Precision 100%: No false positives in the test set
+  (when model predicted Depressed, it was correct)
+- Recall 75%: Detected 75% of depressed segments; missed some cases
+- F1-Score 0.857: Strong balance between precision and recall
+
+4.3 Sample Prediction Results (Deployment Model)
+---------------------------------------------------------
+Audio File                          True Label      Predicted       Confidence
+---------------------------------------------------------
+depressed/319_P/319_AUDIO.wav       Depressed       Depressed       54%
+depressed/325_P/325_AUDIO.wav       Depressed       Depressed       71%
+non depressed/303_P/303_AUDIO.wav   Non-Depressed   Non-Depressed   74%
+non depressed/313_P/313_AUDIO.wav   Non-Depressed   Non-Depressed   61%
+---------------------------------------------------------
+Result: All 4 sample files classified correctly.
+
+4.4 Explainability Results (Qualitative)
+- Grad-CAM successfully highlighted important spectrogram regions
+- Timeline explanations reported exact seconds in the recording
+- Acoustic feature importance ranked pitch, energy, pauses and MFCCs
+- Full spectrogram visualisation marked depression and non-depression regions
+  (red = depression signal, green = non-depression signal)
+
+4.5 Depression Subtype Profile Results
+- Available as research extension only
+- Ranks similarity to 7 clinical subtypes based on acoustic pattern matching
+- Not trained with subtype ground-truth labels
+- Must be treated as exploratory, not clinical diagnosis
+
+
+================================================================================
+5. SUMMARY OF FINDINGS
+================================================================================
+
+1) Speech signals alone can be used to detect depression patterns using CNN.
+2) Mel spectrograms are effective inputs for learning depressive speech cues.
+3) The trained model achieved F1-score = 0.857 on held-out test data.
+4) Explainable AI (Grad-CAM + feature importance + timestamps) improves
+   transparency of predictions.
+5) The system is suitable as a decision-support research prototype, not as a
+   clinical diagnostic replacement.
+
+
+================================================================================
+6. LIMITATIONS
+================================================================================
+
+1) Small dataset (only 9 participants)
+2) Single corpus (DAIC-WOZ style subset only)
+3) Segment-level evaluation may inflate sample counts
+4) Subtype classification has no clinical subtype labels
+5) Results may not generalise to larger/diverse populations
+6) Not approved for medical diagnostic use
+
+
+================================================================================
+7. HOW TO REPRODUCE THE EXPERIMENT
+================================================================================
+
+Commands:
+cd /Users/ayeshaasarak/Desktop/Data
+pip3 install -r requirements.txt
+export NUMBA_CACHE_DIR="$(pwd)/.numba_cache"
+python3 train.py
+
+View results:
+cat models/training_metadata.json
+
+Run web application:
+python3 -m uvicorn server:app --host 127.0.0.1 --port 8765 --reload
+open http://localhost:8765
+
+
+================================================================================
+8. SAVED MODEL FILES
+================================================================================
+
+models/depression_cnn.pt        -> Main CNN model
+models/feature_model.pt         -> Feature MLP for explanations
+models/feature_scaler.pkl       -> Acoustic feature scaler
+models/training_metadata.json   -> Experiment evaluation metrics
+
+
+================================================================================
+END OF DOCUMENT
+================================================================================

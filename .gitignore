@@ -1,0 +1,27 @@
+# macOS and Python artifacts
+.DS_Store
+__pycache__/
+*.py[cod]
+.numba_cache/
+.venv/
+venv/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Restricted DAIC-WOZ clinical dataset
+/depressed/
+/non depressed/
+*.zip
+
+# Trained/generated model artifacts
+/models/*.pt
+/models/*.pkl
+
+# Generated reports (Markdown sources remain tracked)
+/INTERVIEW_GUIDE.html
+/INTERVIEW_GUIDE.pdf
+/SUPERVISOR_PROJECT_REPORT.html
+/SUPERVISOR_PROJECT_REPORT.pdf

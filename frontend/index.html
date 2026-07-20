@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speech Depression Detection | XAI Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">🎙️</span>
+      <div>
+        <h1>Speech Depression Detection</h1>
+        <p class="subtitle">Explainable Deep Learning Framework</p>
+      </div>
+    </div>
+    <div id="statusBadge" class="status-badge loading">Checking model…</div>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <div class="hero-text">
+        <h2>Upload a voice recording</h2>
+        <p>
+          Our CNN model analyzes mel-spectrogram patterns and acoustic features to classify speech as
+          <strong>Depressed</strong> or <strong>Non-Depressed</strong>, with Grad-CAM and SHAP explanations.
+        </p>
+        <div class="disclaimer">
+          ⚠️ Decision-support tool only — not a clinical diagnosis. Consult a mental health professional.
+        </div>
+      </div>
+
+      <div id="dropZone" class="drop-zone">
+        <input type="file" id="fileInput" accept=".wav,.mp3,.flac,.ogg,.m4a,.webm,audio/*" hidden />
+        <div class="drop-content">
+          <div class="drop-icon">📁</div>
+          <p class="drop-title">Drag & drop your recording here</p>
+          <p class="drop-hint">or <button type="button" id="browseBtn" class="link-btn">browse files</button></p>
+          <p class="drop-formats">WAV · MP3 · FLAC · OGG · M4A</p>
+        </div>
+        <div id="filePreview" class="file-preview hidden">
+          <span id="fileName" class="file-name"></span>
+          <button type="button" id="clearBtn" class="icon-btn" title="Remove">✕</button>
+        </div>
+      </div>
+
+      <div class="context-options">
+        <p class="context-label">Optional context (improves subtype classification):</p>
+        <div class="context-grid">
+          <label><input type="checkbox" id="ctxChronic" /> Chronic (2+ years)</label>
+          <label><input type="checkbox" id="ctxStress" /> Recent stressful event</label>
+          <label><input type="checkbox" id="ctxPostpartum" /> After childbirth</label>
+          <label><input type="checkbox" id="ctxSeasonal" /> Seasonal (winter/low light)</label>
+          <label><input type="checkbox" id="ctxMoodSwings" /> Mood swings history</label>
+        </div>
+      </div>
+
+      <button id="analyzeBtn" class="btn-primary" disabled>
+        <span class="btn-text">Analyze Recording</span>
+        <span class="btn-loader hidden"></span>
+      </button>
+    </section>
+
+    <section id="resultsSection" class="results hidden">
+      <div class="result-header card">
+        <div id="resultBadge" class="result-badge"></div>
+        <div class="result-stats">
+          <div class="stat">
+            <span class="stat-label">Confidence</span>
+            <span id="confidenceVal" class="stat-value">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Depression Probability</span>
+            <span id="probVal" class="stat-value">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Duration</span>
+            <span id="durationVal" class="stat-value">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Segments Analyzed</span>
+            <span id="segmentsVal" class="stat-value">—</span>
+          </div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div id="probBar" class="prob-bar"></div>
+        </div>
+      </div>
+
+      <div class="tabs card">
+        <nav class="tab-nav">
+          <button class="tab-btn active" data-tab="summary">Why This Result?</button>
+          <button class="tab-btn" data-tab="subtype">Depression Type</button>
+          <button class="tab-btn" data-tab="spectrogram">Spectrogram</button>
+          <button class="tab-btn" data-tab="timeline">Voice Timeline</button>
+          <button class="tab-btn" data-tab="gradcam">Grad-CAM</button>
+          <button class="tab-btn" data-tab="features">Features</button>
+        </nav>
+
+        <div id="tab-summary" class="tab-panel active">
+          <h3>Why we said <span id="predictionLabel">—</span></h3>
+          <p id="predictionReason" class="reason-box"></p>
+          <h4 class="section-label">Exact places in your voice</h4>
+          <div id="timelineCards" class="timeline-cards"></div>
+        </div>
+
+        <div id="tab-subtype" class="tab-panel">
+          <h3>Depression Type Classification</h3>
+          <p class="panel-desc subtype-disclaimer">
+            Profile match based on speech acoustics — not a clinical diagnosis.
+          </p>
+          <div id="subtypeResult" class="subtype-result"></div>
+          <img id="subtypeImg" class="chart-img hidden" alt="Subtype classification chart" />
+          <div id="subtypeRankings" class="subtype-rankings"></div>
+        </div>
+
+        <div id="tab-spectrogram" class="tab-panel">
+          <h3>Full Voice Spectrogram</h3>
+          <p class="panel-desc">
+            This image shows your entire voice recording. Coloured boxes mark the exact seconds where
+            the model detected depression (red) or non-depression (green) signals.
+          </p>
+          <img id="spectrogramImg" class="chart-img" alt="Full voice spectrogram" />
+        </div>
+
+        <div id="tab-timeline" class="tab-panel">
+          <h3>Where in your voice — second by second</h3>
+          <p class="panel-desc">Each bar shows the depression score at that exact moment in your recording.</p>
+          <img id="timelineImg" class="chart-img" alt="Voice timeline chart" />
+        </div>
+
+        <div id="tab-gradcam" class="tab-panel">
+          <h3>Grad-CAM at key voice region</h3>
+          <p class="panel-desc">Shows the exact seconds and frequency bands that most influenced the prediction.</p>
+          <img id="gradCamImg" class="chart-img" alt="Grad-CAM visualization" />
+        </div>
+
+        <div id="tab-features" class="tab-panel">
+          <h3>Acoustic Feature Importance (SHAP)</h3>
+          <img id="featuresImg" class="chart-img" alt="Feature importance chart" />
+          <div id="acousticGrid" class="acoustic-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <div class="info-card card">
+        <h3>🔬 Methodology</h3>
+        <ul>
+          <li>Noise removal & audio normalization</li>
+          <li>MFCC & mel-spectrogram extraction</li>
+          <li>CNN spatial-temporal pattern learning</li>
+          <li>Grad-CAM + SHAP explainability</li>
+        </ul>
+      </div>
+      <div class="info-card card">
+        <h3>📊 Dataset</h3>
+        <ul>
+          <li>DAIC-WOZ style interview recordings</li>
+          <li>5 depressed · 4 non-depressed participants</li>
+          <li>Binary classification task</li>
+          <li>Clinical assessment labels</li>
+        </ul>
+      </div>
+      <div class="info-card card">
+        <h3>🧠 Model</h3>
+        <ul>
+          <li>3-layer CNN on mel spectrograms</li>
+          <li>Acoustic feature MLP for SHAP</li>
+          <li>Segment aggregation at inference</li>
+          <li>Participant-level training split</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Research prototype · Explainable AI for Mental Health · Not for clinical use</p>
+  </footer>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
