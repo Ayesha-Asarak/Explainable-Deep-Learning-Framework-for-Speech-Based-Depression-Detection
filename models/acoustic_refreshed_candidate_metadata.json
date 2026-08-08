@@ -1,0 +1,82 @@
+{
+  "n_participants": 139,
+  "selected_model": "extra_trees",
+  "threshold": 0.43000000000000005,
+  "training_cv_balanced_accuracy": 0.6543040293040292,
+  "training_oof_balanced_accuracy": 0.6716638513513513,
+  "train_metrics": {
+    "accuracy": 0.9900990099009901,
+    "balanced_accuracy": 0.9921875,
+    "precision": 0.9736842105263158,
+    "recall": 1.0,
+    "specificity": 0.984375,
+    "f1": 0.9866666666666667,
+    "threshold": 0.43000000000000005,
+    "n_participants": 101,
+    "confusion_matrix": {
+      "tn": 63,
+      "fp": 1,
+      "fn": 0,
+      "tp": 37
+    },
+    "roc_auc": 1.0,
+    "pr_auc": 0.9999999999999998
+  },
+  "held_out_test_metrics": {
+    "accuracy": 0.4473684210526316,
+    "balanced_accuracy": 0.5064102564102564,
+    "precision": 0.32,
+    "recall": 0.6666666666666666,
+    "specificity": 0.34615384615384615,
+    "f1": 0.43243243243243246,
+    "threshold": 0.43000000000000005,
+    "n_participants": 38,
+    "confusion_matrix": {
+      "tn": 9,
+      "fp": 17,
+      "fn": 4,
+      "tp": 8
+    },
+    "roc_auc": 0.6794871794871795,
+    "pr_auc": 0.648698212831666,
+    "accuracy_bootstrap_ci95": {
+      "mean": 0.44805263157894737,
+      "ci95_low": 0.2894736842105263,
+      "ci95_high": 0.6052631578947368
+    }
+  },
+  "candidate_comparison": {
+    "logistic": {
+      "cv_balanced_accuracy": 0.614514652014652,
+      "best_params": {
+        "model__C": 0.1,
+        "pca__n_components": 8
+      }
+    },
+    "svm": {
+      "cv_balanced_accuracy": 0.5995879120879121,
+      "best_params": {
+        "model__C": 1,
+        "model__gamma": 0.01,
+        "pca__n_components": 8
+      }
+    },
+    "extra_trees": {
+      "cv_balanced_accuracy": 0.6543040293040292,
+      "best_params": {
+        "max_depth": 6,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      }
+    },
+    "random_forest": {
+      "cv_balanced_accuracy": 0.6457417582417582,
+      "best_params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      }
+    }
+  },
+  "excluded_label_conflicts": []
+}

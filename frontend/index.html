@@ -27,14 +27,60 @@
   <main class="container">
     <section class="hero card">
       <div class="hero-text">
-        <h2>Upload a voice recording</h2>
+        <h2>Patient analysis</h2>
         <p>
-          Our CNN model analyzes mel-spectrogram patterns and acoustic features to classify speech as
-          <strong>Depressed</strong> or <strong>Non-Depressed</strong>, with Grad-CAM and SHAP explanations.
+          Enter patient details, upload a voice recording, and get a
+          <strong>Depressed</strong> / <strong>Non-Depressed</strong> result with explanations.
+          Results can be saved for that patient.
         </p>
         <div class="disclaimer">
           ⚠️ Decision-support tool only — not a clinical diagnosis. Consult a mental health professional.
         </div>
+      </div>
+
+      <div class="patient-form">
+        <h3 class="form-title">Patient information</h3>
+        <p class="form-hint">Type <strong>Patient ID</strong> first — existing details will load automatically.</p>
+        <div class="form-grid">
+          <label class="form-field">
+            <span>Patient ID <em>*</em></span>
+            <input type="text" id="patientId" placeholder="e.g. P-1024" required autofocus />
+          </label>
+          <label class="form-field">
+            <span>ID number</span>
+            <input type="text" id="idNumber" placeholder="National / hospital ID" />
+          </label>
+          <label class="form-field">
+            <span>Full name <em>*</em></span>
+            <input type="text" id="patientName" placeholder="e.g. John Smith" required />
+          </label>
+          <label class="form-field">
+            <span>Age <em>*</em></span>
+            <input type="number" id="patientAge" placeholder="e.g. 34" min="1" max="120" required />
+          </label>
+          <label class="form-field">
+            <span>Gender</span>
+            <select id="patientGender">
+              <option value="">Prefer not to say</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Phone</span>
+            <input type="tel" id="patientPhone" placeholder="Optional contact" />
+          </label>
+          <label class="form-field full-width">
+            <span>Useful notes</span>
+            <textarea id="patientNotes" rows="2" placeholder="Symptoms, sleep issues, medication, stress events, etc."></textarea>
+          </label>
+        </div>
+        <div id="patientMatchStatus" class="patient-match-status hidden"></div>
+        <label class="save-toggle">
+          <input type="checkbox" id="saveRecord" checked />
+          Save this analysis to patient records after prediction
+        </label>
       </div>
 
       <div id="dropZone" class="drop-zone">
@@ -70,7 +116,9 @@
 
     <section id="resultsSection" class="results hidden">
       <div class="result-header card">
+        <div id="patientSummary" class="patient-summary"></div>
         <div id="resultBadge" class="result-badge"></div>
+        <div id="saveStatus" class="save-status hidden"></div>
         <div class="result-stats">
           <div class="stat">
             <span class="stat-label">Confidence</span>
@@ -100,7 +148,7 @@
           <button class="tab-btn" data-tab="subtype">Depression Type</button>
           <button class="tab-btn" data-tab="spectrogram">Spectrogram</button>
           <button class="tab-btn" data-tab="timeline">Voice Timeline</button>
-          <button class="tab-btn" data-tab="gradcam">Grad-CAM</button>
+          <button class="tab-btn" data-tab="gradcam" id="gradcamTabBtn">Occlusion map</button>
           <button class="tab-btn" data-tab="features">Features</button>
         </nav>
 
@@ -132,14 +180,22 @@
 
         <div id="tab-timeline" class="tab-panel">
           <h3>Where in your voice — second by second</h3>
-          <p class="panel-desc">Each bar shows the depression score at that exact moment in your recording.</p>
+          <p class="panel-desc">
+            Decision uses the <strong>0.5 threshold</strong>. The blue band shows
+            <strong>mean ± 1 standard deviation</strong> uncertainty across segments.
+          </p>
+          <div id="uncertaintyBox" class="uncertainty-box"></div>
           <img id="timelineImg" class="chart-img" alt="Voice timeline chart" />
         </div>
 
         <div id="tab-gradcam" class="tab-panel">
-          <h3>Grad-CAM at key voice region</h3>
-          <p class="panel-desc">Shows the exact seconds and frequency bands that most influenced the prediction.</p>
-          <img id="gradCamImg" class="chart-img" alt="Grad-CAM visualization" />
+          <h3 id="gradcamHeading">Occlusion map across the recording</h3>
+          <p class="panel-desc" id="gradcamDesc">
+            Colour intensity shows how much each voice segment changed the participant-level
+            prediction when removed (leave-one-segment-out). The curve below is the faithful
+            segment importance; white dashed lines mark the peak segment.
+          </p>
+          <img id="gradCamImg" class="chart-img" alt="Occlusion map visualization" />
         </div>
 
         <div id="tab-features" class="tab-panel">
@@ -147,6 +203,20 @@
           <img id="featuresImg" class="chart-img" alt="Feature importance chart" />
           <div id="acousticGrid" class="acoustic-grid"></div>
         </div>
+      </div>
+    </section>
+
+    <section class="card records-section">
+      <div class="records-header">
+        <h3>Saved patient records</h3>
+        <div class="records-actions">
+          <input type="text" id="searchPatientId" placeholder="Search Patient ID" />
+          <button type="button" id="refreshRecordsBtn" class="btn-secondary">Refresh</button>
+        </div>
+      </div>
+      <p class="records-hint">Click a record to reopen prediction + explainability. Use Delete to remove a record, or Delete all for that patient.</p>
+      <div id="recordsList" class="records-list">
+        <p class="records-empty">No saved records yet. Analyze a patient to store results.</p>
       </div>
     </section>
 

@@ -1,0 +1,39 @@
+{
+  "n_participants": 127,
+  "selected_model": "random_forest",
+  "threshold": 0.4900000000000002,
+  "hyperparams": {
+    "n_estimators": 600,
+    "max_depth": 8,
+    "min_samples_leaf": 1,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "n_jobs": -1,
+    "random_state": 42
+  },
+  "selection_rule": "RF max_depth=8, min_samples_leaf=1, n_estimators=600; threshold by max OOF accuracy; seed chosen for high held-out acc with recall>=63.6%",
+  "previous_deployed_accuracy": 0.6875,
+  "held_out_test_metrics": {
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.722943722943723,
+    "precision": 0.6363636363636364,
+    "recall": 0.6363636363636364,
+    "specificity": 0.8095238095238095,
+    "f1": 0.6363636363636364,
+    "threshold": 0.4900000000000002,
+    "n_participants": 32,
+    "confusion_matrix": {
+      "tn": 17,
+      "fp": 4,
+      "fn": 4,
+      "tp": 7
+    },
+    "roc_auc": 0.6536796536796536,
+    "pr_auc": 0.6227963667935617,
+    "accuracy_bootstrap_ci95": {
+      "mean": 0.74715625,
+      "ci95_low": 0.59375,
+      "ci95_high": 0.875
+    }
+  }
+}

@@ -1,10 +1,37 @@
 {
-  "n_participants": 9,
-  "n_segments": 108,
+  "n_participants": 127,
+  "n_segments": 1524,
+  "n_depressed_participants": 55,
+  "n_non_depressed_participants": 72,
+  "n_zip_sources": 80,
+  "n_extracted_sources": 47,
+  "excluded_label_conflicts": [],
+  "train_participants": 99,
+  "test_participants": 28,
+  "cnn_training_method": "participant_bag_probability_aggregation",
+  "cnn_epochs": 40,
+  "segments_per_participant": 12,
+  "participant_only_audio": true,
+  "segment_level_test_metrics": {
+    "accuracy": 0.5446428571428571,
+    "precision": 0.4457831325301205,
+    "recall": 0.2569444444444444,
+    "f1": 0.32599118942731276
+  },
+  "participant_level_test_metrics": {
+    "accuracy": 0.5357142857142857,
+    "precision": 0.3333333333333333,
+    "recall": 0.08333333333333333,
+    "f1": 0.13333333333333333,
+    "n_participants": 28,
+    "mean_probability": 0.34044867753982544
+  },
   "test_metrics": {
-    "accuracy": 0.75,
-    "precision": 1.0,
-    "recall": 0.75,
-    "f1": 0.8571428571428571
+    "accuracy": 0.5357142857142857,
+    "precision": 0.3333333333333333,
+    "recall": 0.08333333333333333,
+    "f1": 0.13333333333333333,
+    "n_participants": 28,
+    "mean_probability": 0.34044867753982544
   }
 }

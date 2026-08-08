@@ -1,0 +1,2251 @@
+{
+  "n_participants": 127,
+  "selected_model": "extra_trees",
+  "feature_family": "engineered_gender",
+  "best_params": {
+    "max_depth": 8,
+    "max_features": "sqrt",
+    "min_samples_leaf": 8
+  },
+  "threshold": 0.37000000000000005,
+  "training_oof_balanced_accuracy": 0.690354147250699,
+  "training_oof_phq_mae": 4.5094705126157555,
+  "train_metrics": {
+    "accuracy": 0.7789473684210526,
+    "balanced_accuracy": 0.7308946877912395,
+    "precision": 0.8636363636363636,
+    "recall": 0.5135135135135135,
+    "specificity": 0.9482758620689655,
+    "f1": 0.6440677966101694,
+    "threshold": 0.37000000000000005,
+    "n_participants": 95,
+    "confusion_matrix": {
+      "tn": 55,
+      "fp": 3,
+      "fn": 18,
+      "tp": 19
+    },
+    "roc_auc": 0.9002795899347623,
+    "pr_auc": 0.8558372794178186
+  },
+  "held_out_test_metrics": {
+    "accuracy": 0.6875,
+    "balanced_accuracy": 0.6320346320346321,
+    "precision": 0.5555555555555556,
+    "recall": 0.45454545454545453,
+    "specificity": 0.8095238095238095,
+    "f1": 0.5,
+    "threshold": 0.37000000000000005,
+    "n_participants": 32,
+    "confusion_matrix": {
+      "tn": 17,
+      "fp": 4,
+      "fn": 6,
+      "tp": 5
+    },
+    "roc_auc": 0.6839826839826839,
+    "pr_auc": 0.6411868575181268,
+    "accuracy_bootstrap_ci95": {
+      "mean": 0.6881875,
+      "ci95_low": 0.53125,
+      "ci95_high": 0.84375
+    }
+  },
+  "current_deployed_metrics": {
+    "accuracy": 0.59375,
+    "balanced_accuracy": 0.6038961038961039,
+    "recall": 0.6363636363636364,
+    "f1": 0.5185185185185185
+  },
+  "deploy_eligible": false,
+  "candidate_comparison": [
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.630009319664492,
+      "oof_mae": 4.580534655084253
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6607642124883504,
+      "oof_mae": 4.545373137429667
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6484156570363466,
+      "oof_mae": 4.573895397306924
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6544734389561976,
+      "oof_mae": 4.575625673179763
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6409599254426841,
+      "oof_mae": 4.59178055199975
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6360671015843429,
+      "oof_mae": 4.56051814745319
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.652143522833178,
+      "oof_mae": 4.547533993309555
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6607642124883504,
+      "oof_mae": 4.535134582100733
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6484156570363466,
+      "oof_mae": 4.572887411258075
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.66309412861137,
+      "oof_mae": 4.592766349852258
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6593662628145387,
+      "oof_mae": 4.587923760525533
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6360671015843429,
+      "oof_mae": 4.560092971425934
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6286113699906803,
+      "oof_mae": 4.548910251955648
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6607642124883504,
+      "oof_mae": 4.535999368236941
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6484156570363466,
+      "oof_mae": 4.572887411258075
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6852283317800559,
+      "oof_mae": 4.597247807017544
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6593662628145387,
+      "oof_mae": 4.587884132205515
+    },
+    {
+      "family": "raw_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6360671015843429,
+      "oof_mae": 4.560092971425935
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6176607642124884,
+      "oof_mae": 4.627280706949503
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.6013513513513513,
+      "oof_mae": 4.608574525184271
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.29000000000000004,
+      "oof_balanced_accuracy": 0.5901677539608574,
+      "oof_mae": 4.656722099849317
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.6223205964585274,
+      "oof_mae": 4.642020135991616
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6349021435228331,
+      "oof_mae": 4.611982258691815
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.6013513513513513,
+      "oof_mae": 4.608275022415077
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.5964585274930103,
+      "oof_mae": 4.6423096106278505
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.6223205964585274,
+      "oof_mae": 4.640619068720306
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6349021435228331,
+      "oof_mae": 4.622707534935825
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.6013513513513513,
+      "oof_mae": 4.608275022415078
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.5927306616961789,
+      "oof_mae": 4.648161119399606
+    },
+    {
+      "family": "raw_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.6223205964585274,
+      "oof_mae": 4.640619068720306
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 100
+      },
+      "threshold": 0.29000000000000004,
+      "oof_balanced_accuracy": 0.5717614165890028,
+      "oof_mae": 4.882381656505703
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 250
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.575722273998136,
+      "oof_mae": 4.879301286947919
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 100
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.5645386766076421,
+      "oof_mae": 4.8029444258978105
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 250
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.5904007455731594,
+      "oof_mae": 4.743739323694492
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 100
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.575722273998136,
+      "oof_mae": 4.888192623098575
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 250
+      },
+      "threshold": 0.41000000000000003,
+      "oof_balanced_accuracy": 0.6090400745573159,
+      "oof_mae": 4.84510214273121
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 100
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.5941286113699906,
+      "oof_mae": 4.827679659817379
+    },
+    {
+      "family": "raw_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 250
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.5806150978564772,
+      "oof_mae": 4.860527128088893
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 150
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.5484622553588071,
+      "oof_mae": 4.7597151806480005
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 300
+      },
+      "threshold": 0.4700000000000001,
+      "oof_balanced_accuracy": 0.5908667287977634,
+      "oof_mae": 4.674355155543277
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 150
+      },
+      "threshold": 0.4600000000000001,
+      "oof_balanced_accuracy": 0.5908667287977634,
+      "oof_mae": 4.663314969916093
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 300
+      },
+      "threshold": 0.41000000000000003,
+      "oof_balanced_accuracy": 0.6127679403541473,
+      "oof_mae": 4.607674980163575
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 3,
+        "n_estimators": 150
+      },
+      "threshold": 0.4700000000000001,
+      "oof_balanced_accuracy": 0.5994874184529357,
+      "oof_mae": 4.702319953316136
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 3,
+        "n_estimators": 300
+      },
+      "threshold": 0.44000000000000006,
+      "oof_balanced_accuracy": 0.6067101584342963,
+      "oof_mae": 4.650125089444612
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 150
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.5941286113699906,
+      "oof_mae": 4.666671587291517
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 300
+      },
+      "threshold": 0.45000000000000007,
+      "oof_balanced_accuracy": 0.6423578751164958,
+      "oof_mae": 4.599687990389373
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 150
+      },
+      "threshold": 0.4600000000000001,
+      "oof_balanced_accuracy": 0.6460857409133272,
+      "oof_mae": 4.661659263309679
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 300
+      },
+      "threshold": 0.45000000000000007,
+      "oof_balanced_accuracy": 0.6337371854613234,
+      "oof_mae": 4.638630825594852
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 150
+      },
+      "threshold": 0.4700000000000001,
+      "oof_balanced_accuracy": 0.6276794035414726,
+      "oof_mae": 4.690906060369391
+    },
+    {
+      "family": "raw_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 300
+      },
+      "threshold": 0.4700000000000001,
+      "oof_balanced_accuracy": 0.6288443616029823,
+      "oof_mae": 4.73332657312092
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6274464119291705,
+      "oof_mae": 5.008620573344984
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 16
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6481826654240448,
+      "oof_mae": 4.870408178630628
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 32
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.5866728797763281,
+      "oof_mae": 5.64694047225149
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6274464119291705,
+      "oof_mae": 5.002068710327149
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 16
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6395619757688723,
+      "oof_mae": 4.848080888547395
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 32
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.5866728797763281,
+      "oof_mae": 5.333307075500488
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 8
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6237185461323392,
+      "oof_mae": 4.950430368122301
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 16
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6470177073625349,
+      "oof_mae": 4.738664717423289
+    },
+    {
+      "family": "raw_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 32
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.6493476234855545,
+      "oof_mae": 4.79140023181313
+    },
+    {
+      "family": "raw_gender",
+      "name": "svr",
+      "params": {
+        "C": 0.1
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.5496272134203168,
+      "oof_mae": 4.7755559337715665
+    },
+    {
+      "family": "raw_gender",
+      "name": "svr",
+      "params": {
+        "C": 1.0
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.6335041938490215,
+      "oof_mae": 4.696914811387932
+    },
+    {
+      "family": "raw_gender",
+      "name": "svr",
+      "params": {
+        "C": 10.0
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6027493010251631,
+      "oof_mae": 4.818666100876038
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.6470177073625349,
+      "oof_mae": 4.536531768115929
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6731127679403541,
+      "oof_mae": 4.5456137512202215
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.690354147250699,
+      "oof_mae": 4.509734006934819
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6460857409133272,
+      "oof_mae": 4.636741743261145
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6435228331780056,
+      "oof_mae": 4.627118528498733
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6780055917986952,
+      "oof_mae": 4.492700149958944
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6570363466915191,
+      "oof_mae": 4.51277938039226
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6595992544268406,
+      "oof_mae": 4.517112408516786
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.690354147250699,
+      "oof_mae": 4.5094705126157555
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6423578751164958,
+      "oof_mae": 4.61402106660082
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6472506989748369,
+      "oof_mae": 4.63211931520494
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6780055917986952,
+      "oof_mae": 4.490300795531223
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6780055917986952,
+      "oof_mae": 4.5083216374269
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6731127679403541,
+      "oof_mae": 4.521304305435112
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.690354147250699,
+      "oof_mae": 4.5094705126157555
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6509785647716683,
+      "oof_mae": 4.626837719298246
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6533084808946878,
+      "oof_mae": 4.633588043024229
+    },
+    {
+      "family": "engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6780055917986952,
+      "oof_mae": 4.490300795531223
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6325722273998137,
+      "oof_mae": 4.688997234668513
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6547064305684995,
+      "oof_mae": 4.669533284836763
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6262814538676608,
+      "oof_mae": 4.709100884310488
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6435228331780056,
+      "oof_mae": 4.731931877557901
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6558713886300094,
+      "oof_mae": 4.6643386116171115
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6595992544268406,
+      "oof_mae": 4.6527284466370755
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6435228331780056,
+      "oof_mae": 4.730721955049137
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6435228331780056,
+      "oof_mae": 4.733203821401763
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6693849021435229,
+      "oof_mae": 4.660632225267423
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6595992544268406,
+      "oof_mae": 4.6527284466370755
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6435228331780056,
+      "oof_mae": 4.727255789568617
+    },
+    {
+      "family": "engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6435228331780056,
+      "oof_mae": 4.733203821401763
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 100
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.6102050326188257,
+      "oof_mae": 4.8058182599899215
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 250
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6078751164958062,
+      "oof_mae": 4.841284871839374
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 100
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.6099720410065238,
+      "oof_mae": 4.677902074238712
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 250
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6213886300093197,
+      "oof_mae": 4.820669801523838
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 100
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6116029822926374,
+      "oof_mae": 4.849111138558971
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 250
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6274464119291705,
+      "oof_mae": 4.989326297240398
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 100
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.630009319664492,
+      "oof_mae": 4.799029608547371
+    },
+    {
+      "family": "engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 250
+      },
+      "threshold": 0.42000000000000004,
+      "oof_balanced_accuracy": 0.6164958061509785,
+      "oof_mae": 4.96989784093508
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 150
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.5780521901211556,
+      "oof_mae": 4.780029023321052
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 300
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.6039142590866728,
+      "oof_mae": 4.817596234773335
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 150
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6139328984156571,
+      "oof_mae": 4.756311125504343
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 300
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6311742777260019,
+      "oof_mae": 4.8851159572601315
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 3,
+        "n_estimators": 150
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.6507455731593663,
+      "oof_mae": 4.76256739214847
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 3,
+        "n_estimators": 300
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6225535880708295,
+      "oof_mae": 4.872659615466469
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 150
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.6076421248835042,
+      "oof_mae": 4.916898983403256
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 300
+      },
+      "threshold": 0.43000000000000005,
+      "oof_balanced_accuracy": 0.5796831314072693,
+      "oof_mae": 5.106123094182266
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 150
+      },
+      "threshold": 0.51,
+      "oof_balanced_accuracy": 0.5859739049394221,
+      "oof_mae": 4.950000948654978
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 300
+      },
+      "threshold": 0.43000000000000005,
+      "oof_balanced_accuracy": 0.5931966449207828,
+      "oof_mae": 5.075195801885505
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 150
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6176607642124884,
+      "oof_mae": 4.93599073510421
+    },
+    {
+      "family": "engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 300
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6262814538676608,
+      "oof_mae": 4.992798481489483
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 8
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6607642124883504,
+      "oof_mae": 5.110069862164949
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 16
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.6397949673811743,
+      "oof_mae": 5.460721327129163
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 32
+      },
+      "threshold": 0.42000000000000004,
+      "oof_balanced_accuracy": 0.5684995340167753,
+      "oof_mae": 6.530342292785645
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6570363466915191,
+      "oof_mae": 5.092060997611598
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 16
+      },
+      "threshold": 0.42000000000000004,
+      "oof_balanced_accuracy": 0.6374650512581548,
+      "oof_mae": 5.415729010732551
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 32
+      },
+      "threshold": 0.42000000000000004,
+      "oof_balanced_accuracy": 0.5943616029822927,
+      "oof_mae": 6.0929796570225765
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 8
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6570363466915191,
+      "oof_mae": 4.96023362812243
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 16
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6570363466915191,
+      "oof_mae": 5.1306123181393275
+    },
+    {
+      "family": "engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 32
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6127679403541473,
+      "oof_mae": 5.09974227453533
+    },
+    {
+      "family": "engineered_gender",
+      "name": "svr",
+      "params": {
+        "C": 0.1
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.5570829450139795,
+      "oof_mae": 4.758304650303693
+    },
+    {
+      "family": "engineered_gender",
+      "name": "svr",
+      "params": {
+        "C": 1.0
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.6656570363466916,
+      "oof_mae": 4.578039939564835
+    },
+    {
+      "family": "engineered_gender",
+      "name": "svr",
+      "params": {
+        "C": 10.0
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6840633737185462,
+      "oof_mae": 4.506134650899442
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6423578751164958,
+      "oof_mae": 4.574510140374656
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6582013047530288,
+      "oof_mae": 4.5757061028806385
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6754426840633737,
+      "oof_mae": 4.534427849874009
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.624883504193849,
+      "oof_mae": 4.679608030134622
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6335041938490215,
+      "oof_mae": 4.681097506797295
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6642590866728797,
+      "oof_mae": 4.602705678526762
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6780055917986952,
+      "oof_mae": 4.5407831844011435
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6582013047530288,
+      "oof_mae": 4.564424068158321
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6840633737185462,
+      "oof_mae": 4.53225988546208
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6286113699906803,
+      "oof_mae": 4.714964212621088
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6458527493010251,
+      "oof_mae": 4.681484629499539
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6507455731593663,
+      "oof_mae": 4.605485104113724
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.674277726001864,
+      "oof_mae": 4.530612061403508
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6495806150978565,
+      "oof_mae": 4.5636164705725
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6840633737185462,
+      "oof_mae": 4.53225988546208
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6237185461323392,
+      "oof_mae": 4.707258771929824
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 4
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6458527493010251,
+      "oof_mae": 4.6828528822055135
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "extra_trees",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 8
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6507455731593663,
+      "oof_mae": 4.605485104113724
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6409599254426841,
+      "oof_mae": 4.631570127352464
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6139328984156571,
+      "oof_mae": 4.64299633709101
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.5880708294501398,
+      "oof_mae": 4.695246416210608
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 4,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.6174277726001864,
+      "oof_mae": 4.6842495035329765
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.41000000000000003,
+      "oof_balanced_accuracy": 0.6276794035414726,
+      "oof_mae": 4.62367179543977
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6139328984156571,
+      "oof_mae": 4.636122799267008
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6113699906803355,
+      "oof_mae": 4.675807572009122
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": 8,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.42000000000000004,
+      "oof_balanced_accuracy": 0.609273066169618,
+      "oof_mae": 4.679904537860293
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.41000000000000003,
+      "oof_balanced_accuracy": 0.6276794035414726,
+      "oof_mae": 4.6156341825206955
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6139328984156571,
+      "oof_mae": 4.6361227992670075
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 2
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.6125349487418452,
+      "oof_mae": 4.674354348648428
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "random_forest",
+      "params": {
+        "max_depth": null,
+        "max_features": 0.5,
+        "min_samples_leaf": 5
+      },
+      "threshold": 0.42000000000000004,
+      "oof_balanced_accuracy": 0.609273066169618,
+      "oof_mae": 4.679904537860293
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 100
+      },
+      "threshold": 0.32000000000000006,
+      "oof_balanced_accuracy": 0.5768872320596459,
+      "oof_mae": 4.848084925352923
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 250
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.5733923578751166,
+      "oof_mae": 4.922329690554209
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 100
+      },
+      "threshold": 0.29000000000000004,
+      "oof_balanced_accuracy": 0.6062441752096924,
+      "oof_mae": 4.788681201732474
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 250
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.6088070829450141,
+      "oof_mae": 4.79923451710111
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 100
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.5647716682199441,
+      "oof_mae": 4.921615178248204
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 250
+      },
+      "threshold": 0.4,
+      "oof_balanced_accuracy": 0.5906337371854613,
+      "oof_mae": 5.032278025294419
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 100
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.619990680335508,
+      "oof_mae": 4.818812035450511
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 250
+      },
+      "threshold": 0.37000000000000005,
+      "oof_balanced_accuracy": 0.6102050326188257,
+      "oof_mae": 4.843829104740223
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 150
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.5794501397949674,
+      "oof_mae": 4.781105957533184
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 1,
+        "n_estimators": 300
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.5843429636533084,
+      "oof_mae": 4.777301893736187
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 150
+      },
+      "threshold": 0.42000000000000004,
+      "oof_balanced_accuracy": 0.5920316868592731,
+      "oof_mae": 4.674380222119783
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 2,
+        "n_estimators": 300
+      },
+      "threshold": 0.39,
+      "oof_balanced_accuracy": 0.5992544268406338,
+      "oof_mae": 4.680987799795051
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 3,
+        "n_estimators": 150
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.5892357875116496,
+      "oof_mae": 4.672001670536242
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.02,
+        "max_depth": 3,
+        "n_estimators": 300
+      },
+      "threshold": 0.38000000000000006,
+      "oof_balanced_accuracy": 0.6127679403541473,
+      "oof_mae": 4.702524170122649
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 150
+      },
+      "threshold": 0.35000000000000003,
+      "oof_balanced_accuracy": 0.6064771668219944,
+      "oof_mae": 4.761828555558857
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 1,
+        "n_estimators": 300
+      },
+      "threshold": 0.41000000000000003,
+      "oof_balanced_accuracy": 0.6164958061509785,
+      "oof_mae": 4.78825232166993
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 150
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.6260484622553588,
+      "oof_mae": 4.705791383040578
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 300
+      },
+      "threshold": 0.4,
+      "oof_balanced_accuracy": 0.5992544268406338,
+      "oof_mae": 4.7279494122455
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 150
+      },
+      "threshold": 0.4,
+      "oof_balanced_accuracy": 0.6176607642124884,
+      "oof_mae": 4.690903982363249
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "xgboost",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 300
+      },
+      "threshold": 0.43000000000000005,
+      "oof_balanced_accuracy": 0.6423578751164958,
+      "oof_mae": 4.6999077652630055
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 8
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6274464119291705,
+      "oof_mae": 4.779759369398418
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 16
+      },
+      "threshold": 0.44000000000000006,
+      "oof_balanced_accuracy": 0.6374650512581548,
+      "oof_mae": 4.781637244475515
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 1.0,
+        "dimensions": 32
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.5633737185461323,
+      "oof_mae": 6.027450026963886
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 8
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6274464119291705,
+      "oof_mae": 4.77912305028815
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 16
+      },
+      "threshold": 0.43000000000000005,
+      "oof_balanced_accuracy": 0.6337371854613234,
+      "oof_mae": 4.763853858646594
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 10.0,
+        "dimensions": 32
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.5633737185461323,
+      "oof_mae": 5.871590571654471
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 8
+      },
+      "threshold": 0.36000000000000004,
+      "oof_balanced_accuracy": 0.6274464119291705,
+      "oof_mae": 4.77280152471442
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 16
+      },
+      "threshold": 0.43000000000000005,
+      "oof_balanced_accuracy": 0.641192917054986,
+      "oof_mae": 4.653522481416401
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "pca_ridge",
+      "params": {
+        "alpha": 100.0,
+        "dimensions": 32
+      },
+      "threshold": 0.34,
+      "oof_balanced_accuracy": 0.6088070829450141,
+      "oof_mae": 5.202445321334036
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "svr",
+      "params": {
+        "C": 0.1
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.5447343895619757,
+      "oof_mae": 4.7686554228786795
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "svr",
+      "params": {
+        "C": 1.0
+      },
+      "threshold": 0.31000000000000005,
+      "oof_balanced_accuracy": 0.6395619757688723,
+      "oof_mae": 4.640936358295907
+    },
+    {
+      "family": "raw_engineered_gender",
+      "name": "svr",
+      "params": {
+        "C": 10.0
+      },
+      "threshold": 0.33000000000000007,
+      "oof_balanced_accuracy": 0.6432898415657037,
+      "oof_mae": 4.694788284063593
+    }
+  ],
+  "excluded_label_conflicts": []
+}

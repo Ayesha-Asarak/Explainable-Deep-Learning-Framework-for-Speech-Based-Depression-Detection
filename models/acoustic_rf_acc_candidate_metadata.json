@@ -1,0 +1,34 @@
+{
+  "n_participants": 127,
+  "selected_model": "random_forest",
+  "threshold": 0.49000000000000016,
+  "selection_rule": "maximize OOF accuracy on train+dev",
+  "held_out_test_metrics": {
+    "accuracy": 0.6875,
+    "balanced_accuracy": 0.6753246753246753,
+    "precision": 0.5384615384615384,
+    "recall": 0.6363636363636364,
+    "specificity": 0.7142857142857143,
+    "f1": 0.5833333333333334,
+    "threshold": 0.49000000000000016,
+    "n_participants": 32,
+    "roc_auc": 0.6493506493506493,
+    "pr_auc": 0.6386516709097354,
+    "accuracy_bootstrap_ci95": {
+      "mean": 0.68575,
+      "ci95_low": 0.53125,
+      "ci95_high": 0.84375
+    }
+  },
+  "confusion_matrix": {
+    "tn": 15,
+    "fp": 6,
+    "fn": 4,
+    "tp": 7
+  },
+  "compared_to_extra_trees": {
+    "accuracy": 0.59375,
+    "recall": 0.6363636363636364
+  },
+  "note": "Candidate only until explicitly promoted to ACTIVE deployment artifact."
+}

@@ -1,0 +1,238 @@
+{
+  "n_participants": 128,
+  "selected_model": "extra_trees_leaf5",
+  "aggregation": "median",
+  "threshold": 0.4600000000000001,
+  "training_oof_balanced_accuracy": 0.6768208886852954,
+  "train_metrics": {
+    "accuracy": 0.96875,
+    "balanced_accuracy": 0.9745762711864407,
+    "precision": 0.925,
+    "recall": 1.0,
+    "specificity": 0.9491525423728814,
+    "f1": 0.961038961038961,
+    "threshold": 0.4600000000000001,
+    "n_participants": 96,
+    "confusion_matrix": {
+      "tn": 56,
+      "fp": 3,
+      "fn": 0,
+      "tp": 37
+    },
+    "roc_auc": 1.0,
+    "pr_auc": 1.0
+  },
+  "held_out_test_metrics": {
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5541125541125541,
+    "precision": 0.38095238095238093,
+    "recall": 0.7272727272727273,
+    "specificity": 0.38095238095238093,
+    "f1": 0.5,
+    "threshold": 0.4600000000000001,
+    "n_participants": 32,
+    "confusion_matrix": {
+      "tn": 8,
+      "fp": 13,
+      "fn": 3,
+      "tp": 8
+    },
+    "roc_auc": 0.6103896103896104,
+    "pr_auc": 0.5801571853186687,
+    "accuracy_bootstrap_ci95": {
+      "mean": 0.5005,
+      "ci95_low": 0.3125,
+      "ci95_high": 0.6570312499999993
+    }
+  },
+  "current_deployed_metrics": {
+    "accuracy": 0.59375,
+    "balanced_accuracy": 0.6038961038961039,
+    "recall": 0.6363636363636364,
+    "f1": 0.5185185185185185
+  },
+  "deploy_eligible": false,
+  "candidate_comparison": [
+    {
+      "name": "extra_trees_leaf2",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6516262024736601
+    },
+    {
+      "name": "extra_trees_leaf2",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6754466330737517
+    },
+    {
+      "name": "extra_trees_leaf2",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6426935409986257
+    },
+    {
+      "name": "extra_trees_leaf5",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6614750343563902
+    },
+    {
+      "name": "extra_trees_leaf5",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6768208886852954
+    },
+    {
+      "name": "extra_trees_leaf5",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6330737517178195
+    },
+    {
+      "name": "extra_trees_leaf10",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6530004580852038
+    },
+    {
+      "name": "extra_trees_leaf10",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6667430142006413
+    },
+    {
+      "name": "extra_trees_leaf10",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6314704535043518
+    },
+    {
+      "name": "xgb_depth1_rate0.02",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6566651397159872
+    },
+    {
+      "name": "xgb_depth1_rate0.02",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6532295006871278
+    },
+    {
+      "name": "xgb_depth1_rate0.02",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6074209803023363
+    },
+    {
+      "name": "xgb_depth1_rate0.05",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6447549244159414
+    },
+    {
+      "name": "xgb_depth1_rate0.05",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.641548327989006
+    },
+    {
+      "name": "xgb_depth1_rate0.05",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6245991754466331
+    },
+    {
+      "name": "xgb_depth2_rate0.02",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6566651397159872
+    },
+    {
+      "name": "xgb_depth2_rate0.02",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6532295006871278
+    },
+    {
+      "name": "xgb_depth2_rate0.02",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6074209803023363
+    },
+    {
+      "name": "xgb_depth2_rate0.05",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6447549244159414
+    },
+    {
+      "name": "xgb_depth2_rate0.05",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.641548327989006
+    },
+    {
+      "name": "xgb_depth2_rate0.05",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6245991754466331
+    },
+    {
+      "name": "xgb_depth3_rate0.02",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6566651397159872
+    },
+    {
+      "name": "xgb_depth3_rate0.02",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6532295006871278
+    },
+    {
+      "name": "xgb_depth3_rate0.02",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6074209803023363
+    },
+    {
+      "name": "xgb_depth3_rate0.05",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6447549244159414
+    },
+    {
+      "name": "xgb_depth3_rate0.05",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.641548327989006
+    },
+    {
+      "name": "xgb_depth3_rate0.05",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6245991754466331
+    },
+    {
+      "name": "logistic_c0.01",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6312414109024278
+    },
+    {
+      "name": "logistic_c0.01",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6312414109024278
+    },
+    {
+      "name": "logistic_c0.01",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6108566193311956
+    },
+    {
+      "name": "logistic_c0.1",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6378836463582227
+    },
+    {
+      "name": "logistic_c0.1",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6294090700870363
+    },
+    {
+      "name": "logistic_c0.1",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6209344938158498
+    },
+    {
+      "name": "logistic_c1.0",
+      "aggregation": "mean",
+      "oof_balanced_accuracy": 0.6344480073293632
+    },
+    {
+      "name": "logistic_c1.0",
+      "aggregation": "median",
+      "oof_balanced_accuracy": 0.6429225836005497
+    },
+    {
+      "name": "logistic_c1.0",
+      "aggregation": "top_quartile",
+      "oof_balanced_accuracy": 0.6055886394869445
+    }
+  ],
+  "excluded_label_conflicts": []
+}

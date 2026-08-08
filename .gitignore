@@ -19,9 +19,21 @@ venv/
 # Trained/generated model artifacts
 /models/*.pt
 /models/*.pkl
+/models/embedding_cache/
+/models/text_embedding_cache/
+/models/engineered_feature_cache/
+/models/segment_acoustic_cache/
+/models/full_interview_feature_cache/
+/models/huggingface_cache/
+/models/participant_manifest.json
+/models/participant_split.json
+/models/ssl_training_metadata.json
 
 # Generated reports (Markdown sources remain tracked)
 /INTERVIEW_GUIDE.html
 /INTERVIEW_GUIDE.pdf
 /SUPERVISOR_PROJECT_REPORT.html
 /SUPERVISOR_PROJECT_REPORT.pdf
+
+# Stored patient personal data & analysis records
+/patient_records/

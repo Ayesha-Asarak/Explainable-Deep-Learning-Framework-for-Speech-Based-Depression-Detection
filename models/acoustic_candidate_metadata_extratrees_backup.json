@@ -1,0 +1,82 @@
+{
+  "n_participants": 127,
+  "selected_model": "extra_trees",
+  "threshold": 0.49000000000000005,
+  "training_cv_balanced_accuracy": 0.6499458874458874,
+  "training_oof_balanced_accuracy": 0.6495806150978565,
+  "train_metrics": {
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "specificity": 1.0,
+    "f1": 1.0,
+    "threshold": 0.49000000000000005,
+    "n_participants": 95,
+    "confusion_matrix": {
+      "tn": 58,
+      "fp": 0,
+      "fn": 0,
+      "tp": 37
+    },
+    "roc_auc": 1.0,
+    "pr_auc": 0.9999999999999996
+  },
+  "held_out_test_metrics": {
+    "accuracy": 0.59375,
+    "balanced_accuracy": 0.6038961038961039,
+    "precision": 0.4375,
+    "recall": 0.6363636363636364,
+    "specificity": 0.5714285714285714,
+    "f1": 0.5185185185185185,
+    "threshold": 0.49000000000000005,
+    "n_participants": 32,
+    "confusion_matrix": {
+      "tn": 12,
+      "fp": 9,
+      "fn": 4,
+      "tp": 7
+    },
+    "roc_auc": 0.6536796536796536,
+    "pr_auc": 0.6684424861550962,
+    "accuracy_bootstrap_ci95": {
+      "mean": 0.591875,
+      "ci95_low": 0.43671875000000004,
+      "ci95_high": 0.75
+    }
+  },
+  "candidate_comparison": {
+    "logistic": {
+      "cv_balanced_accuracy": 0.6264069264069263,
+      "best_params": {
+        "model__C": 1,
+        "pca__n_components": 16
+      }
+    },
+    "svm": {
+      "cv_balanced_accuracy": 0.5731601731601732,
+      "best_params": {
+        "model__C": 1,
+        "model__gamma": "scale",
+        "pca__n_components": 16
+      }
+    },
+    "extra_trees": {
+      "cv_balanced_accuracy": 0.6499458874458874,
+      "best_params": {
+        "max_depth": 6,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2
+      }
+    },
+    "random_forest": {
+      "cv_balanced_accuracy": 0.5880411255411256,
+      "best_params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4
+      }
+    }
+  },
+  "excluded_label_conflicts": []
+}

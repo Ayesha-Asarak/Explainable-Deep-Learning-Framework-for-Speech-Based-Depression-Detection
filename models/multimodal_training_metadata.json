@@ -1,0 +1,102 @@
+{
+  "n_participants": 127,
+  "selected_model": "semantic_text:pca_svm",
+  "feature_family": "semantic_text",
+  "threshold": 0.54,
+  "training_cv_balanced_accuracy": 0.7133116883116883,
+  "training_oof_balanced_accuracy": 0.7208760484622554,
+  "train_metrics": {
+    "accuracy": 0.9894736842105263,
+    "balanced_accuracy": 0.9864864864864865,
+    "precision": 1.0,
+    "recall": 0.972972972972973,
+    "specificity": 1.0,
+    "f1": 0.9863013698630136,
+    "threshold": 0.54,
+    "n_participants": 95,
+    "confusion_matrix": {
+      "tn": 58,
+      "fp": 0,
+      "fn": 1,
+      "tp": 36
+    },
+    "roc_auc": 1.0,
+    "pr_auc": 0.9999999999999996
+  },
+  "held_out_test_metrics": {
+    "accuracy": 0.4375,
+    "balanced_accuracy": 0.3333333333333333,
+    "precision": 0.0,
+    "recall": 0.0,
+    "specificity": 0.6666666666666666,
+    "f1": 0.0,
+    "threshold": 0.54,
+    "n_participants": 32,
+    "confusion_matrix": {
+      "tn": 14,
+      "fp": 7,
+      "fn": 11,
+      "tp": 0
+    },
+    "roc_auc": 0.4242424242424243,
+    "pr_auc": 0.30635781021542086,
+    "accuracy_bootstrap_ci95": {
+      "mean": 0.43721875,
+      "ci95_low": 0.28046875000000004,
+      "ci95_high": 0.625
+    }
+  },
+  "candidate_comparison": {
+    "semantic_text:pca_logistic": {
+      "cv_balanced_accuracy": 0.7014069264069264,
+      "best_params": {
+        "model__C": 1.0,
+        "pca__n_components": 32
+      }
+    },
+    "semantic_text:pca_svm": {
+      "cv_balanced_accuracy": 0.7133116883116883,
+      "best_params": {
+        "model__C": 1.0,
+        "model__gamma": 0.01,
+        "pca__n_components": 16
+      }
+    },
+    "wavlm_speech:pca_logistic": {
+      "cv_balanced_accuracy": 0.5630952380952381,
+      "best_params": {
+        "model__C": 0.1,
+        "pca__n_components": 8
+      }
+    },
+    "wavlm_speech:pca_svm": {
+      "cv_balanced_accuracy": 0.6202922077922077,
+      "best_params": {
+        "model__C": 1.0,
+        "model__gamma": 0.01,
+        "pca__n_components": 8
+      }
+    },
+    "semantic_text_wavlm:pca_logistic": {
+      "cv_balanced_accuracy": 0.5594155844155844,
+      "best_params": {
+        "model__C": 0.01,
+        "pca__n_components": 32
+      }
+    },
+    "semantic_text_wavlm:pca_svm": {
+      "cv_balanced_accuracy": 0.5802489177489177,
+      "best_params": {
+        "model__C": 1.0,
+        "model__gamma": 0.01,
+        "pca__n_components": 8
+      }
+    }
+  },
+  "target_accuracy_range": [
+    0.75,
+    0.85
+  ],
+  "target_met": false,
+  "excluded_label_conflicts": []
+}

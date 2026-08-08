@@ -255,6 +255,154 @@ def plot_full_spectrogram(
     return fig
 
 
+def build_segment_occlusion_map(
+    full_mel: np.ndarray,
+    times: np.ndarray,
+    segment_details: list[dict],
+) -> np.ndarray:
+    """
+    Project leave-one-segment-out importance onto the full-recording time axis.
+
+    Overlapping segments use the max importance at each frame. A mild energy
+    weighting adds vertical structure for display only; the temporal pattern
+    is the faithful attribution signal.
+    """
+    n_mels, n_frames = full_mel.shape
+    if n_frames == 0 or len(times) == 0:
+        return np.zeros((n_mels, max(n_frames, 1)), dtype=np.float32)
+
+    frame_imp = np.zeros(n_frames, dtype=np.float32)
+    for segment in segment_details:
+        importance = float(segment.get("occlusion_importance", 0.0))
+        start = float(segment["start_sec"])
+        end = float(segment["end_sec"])
+        mask = (times >= start) & (times < end)
+        if not np.any(mask):
+            # Fallback for last segment / floating-point edge cases.
+            mask = (times >= start) & (times <= end)
+        if np.any(mask):
+            frame_imp[mask] = np.maximum(frame_imp[mask], importance)
+
+    # Relative mel energy per frame (0–1) so the overlay is not a solid block.
+    energy = full_mel - full_mel.min(axis=0, keepdims=True)
+    energy = energy / (energy.max(axis=0, keepdims=True) + 1e-8)
+    cam = frame_imp[np.newaxis, :] * (0.35 + 0.65 * energy)
+    if cam.max() > 0:
+        cam = cam / cam.max()
+    return cam.astype(np.float32)
+
+
+def plot_occlusion_map(
+    full_mel: np.ndarray,
+    times: np.ndarray,
+    occlusion_map: np.ndarray,
+    segment_details: list[dict],
+    key_start_sec: float = 0.0,
+    key_end_sec: float = 0.0,
+    title: str = "Leave-one-segment-out occlusion importance",
+) -> plt.Figure:
+    """
+    Full-recording occlusion view: spectrogram overlay + importance over time.
+    """
+    t0 = float(times[0]) if len(times) else 0.0
+    t1 = float(times[-1]) if len(times) else 1.0
+    n_mels = full_mel.shape[0]
+
+    fig, axes = plt.subplots(
+        2,
+        1,
+        figsize=(14, 7),
+        facecolor="#0f1419",
+        gridspec_kw={"height_ratios": [2.2, 1.0], "hspace": 0.32},
+        sharex=True,
+        constrained_layout=True,
+    )
+    for ax in axes:
+        ax.set_facecolor("#1a2332")
+        ax.tick_params(colors="#a8b8d0")
+        for spine in ax.spines.values():
+            spine.set_color("#2d3a4f")
+
+    axes[0].imshow(
+        full_mel,
+        aspect="auto",
+        origin="lower",
+        cmap="gray",
+        alpha=0.55,
+        extent=[t0, t1, 0, n_mels],
+    )
+    im = axes[0].imshow(
+        occlusion_map,
+        aspect="auto",
+        origin="lower",
+        cmap="jet",
+        alpha=0.7,
+        extent=[t0, t1, 0, n_mels],
+        vmin=0.0,
+        vmax=1.0,
+    )
+    axes[0].set_ylabel("Mel bands", color="#a8b8d0")
+    axes[0].set_title(title, color="#e8edf5", fontsize=12, pad=10)
+    cbar = plt.colorbar(im, ax=axes[0], fraction=0.02, pad=0.01)
+    cbar.set_label("Occlusion importance", color="#a8b8d0")
+    cbar.ax.yaxis.set_tick_params(color="#a8b8d0")
+    plt.setp(plt.getp(cbar.ax.axes, "yticklabels"), color="#a8b8d0")
+
+    if key_end_sec > key_start_sec:
+        axes[0].axvspan(
+            key_start_sec,
+            key_end_sec,
+            color="white",
+            alpha=0.12,
+            linewidth=0,
+        )
+        axes[0].axvline(key_start_sec, color="white", linestyle="--", linewidth=1.2, alpha=0.85)
+        axes[0].axvline(key_end_sec, color="white", linestyle="--", linewidth=1.2, alpha=0.85)
+
+    # Max importance over time (handles 50% segment overlap cleanly).
+    if segment_details:
+        starts = [float(s["start_sec"]) for s in segment_details]
+        ends = [float(s["end_sec"]) for s in segment_details]
+        vals = [float(s.get("occlusion_importance", 0.0)) for s in segment_details]
+        n_pts = max(200, int(max(t1 - t0, 1.0) * 20))
+        t_dense = np.linspace(t0, t1, n_pts)
+        y_dense = np.zeros_like(t_dense)
+        for start, end, val in zip(starts, ends, vals):
+            mask = (t_dense >= start) & (t_dense < end)
+            if not np.any(mask):
+                mask = (t_dense >= start) & (t_dense <= end)
+            y_dense[mask] = np.maximum(y_dense[mask], val)
+        axes[1].fill_between(t_dense, y_dense, color="#5b8def", alpha=0.35)
+        axes[1].plot(t_dense, y_dense, color="#8eb6ff", linewidth=1.8)
+        peak_idx = int(np.argmax(vals))
+        peak_t = 0.5 * (starts[peak_idx] + ends[peak_idx])
+        peak_v = vals[peak_idx]
+        axes[1].scatter([peak_t], [peak_v], color="#e85d6f", zorder=5, s=36)
+        axes[1].annotate(
+            f"Peak {_format_time(peak_t)} ({peak_v:.0%})",
+            xy=(peak_t, peak_v),
+            xytext=(8, 8),
+            textcoords="offset points",
+            color="white",
+            fontsize=9,
+            bbox=dict(boxstyle="round,pad=0.25", facecolor="#e85d6f", alpha=0.85),
+        )
+    else:
+        axes[1].plot([t0, t1], [0, 0], color="#5b8def")
+
+    axes[1].set_ylim(-0.02, 1.05)
+    axes[1].set_xlim(t0, t1)
+    axes[1].set_xlabel("Time in recording (seconds)", color="#a8b8d0")
+    axes[1].set_ylabel("Segment importance", color="#a8b8d0")
+    axes[1].set_title(
+        "How much each voice segment changed the participant-level prediction",
+        color="#e8edf5",
+        fontsize=11,
+    )
+
+    return fig
+
+
 def plot_grad_cam(
     spectrogram: np.ndarray,
     cam: np.ndarray,
@@ -312,9 +460,70 @@ def plot_grad_cam(
     return fig
 
 
-def plot_timeline_chart(segment_details: list[dict], prediction: str) -> plt.Figure:
-    """Bar chart of depression probability vs exact time in voice."""
-    fig, ax = plt.subplots(figsize=(14, 4), facecolor="#0f1419")
+def compute_probability_uncertainty(segment_probs: list[float], threshold: float = 0.5) -> dict:
+    """
+    Decision uses mean vs 0.5 threshold.
+    Uncertainty uses mean ± 1 standard deviation across segments.
+    """
+    probs = np.asarray(segment_probs, dtype=np.float64)
+    if len(probs) == 0:
+        return {
+            "mean": 0.0,
+            "std": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "threshold": threshold,
+            "stability": "insufficient_data",
+            "stability_label": "Insufficient data",
+            "message": "Not enough segments to estimate uncertainty.",
+        }
+
+    mean = float(np.mean(probs))
+    std = float(np.std(probs, ddof=0)) if len(probs) > 1 else 0.0
+    lower = float(max(0.0, mean - std))
+    upper = float(min(1.0, mean + std))
+
+    if lower >= threshold:
+        stability = "stable_depressed"
+        stability_label = "Stable Depressed"
+        message = (
+            f"Mean {mean:.0%} with ±1 SD band [{lower:.0%} – {upper:.0%}] "
+            f"stays entirely above the {threshold:.0%} threshold."
+        )
+    elif upper <= threshold:
+        stability = "stable_non_depressed"
+        stability_label = "Stable Non-Depressed"
+        message = (
+            f"Mean {mean:.0%} with ±1 SD band [{lower:.0%} – {upper:.0%}] "
+            f"stays entirely below the {threshold:.0%} threshold."
+        )
+    else:
+        stability = "uncertain"
+        stability_label = "Uncertain / Needs Review"
+        message = (
+            f"Mean {mean:.0%} with ±1 SD band [{lower:.0%} – {upper:.0%}] "
+            f"crosses the {threshold:.0%} threshold — prediction is less stable."
+        )
+
+    return {
+        "mean": mean,
+        "std": std,
+        "lower": lower,
+        "upper": upper,
+        "threshold": threshold,
+        "stability": stability,
+        "stability_label": stability_label,
+        "message": message,
+    }
+
+
+def plot_timeline_chart(
+    segment_details: list[dict],
+    prediction: str,
+    uncertainty: dict = None,
+) -> plt.Figure:
+    """Bar chart of depression probability vs time, with 0.5 threshold and mean ± 1 SD."""
+    fig, ax = plt.subplots(figsize=(14, 4.5), facecolor="#0f1419")
     ax.set_facecolor("#1a2332")
 
     starts = [s["start_sec"] for s in segment_details]
@@ -322,16 +531,51 @@ def plot_timeline_chart(segment_details: list[dict], prediction: str) -> plt.Fig
     widths = [s["end_sec"] - s["start_sec"] for s in segment_details]
     colors = ["#e85d6f" if p >= 0.5 else "#3ecf8e" for p in probs]
 
-    ax.bar(starts, probs, width=widths, align="edge", color=colors, alpha=0.85, edgecolor="#2d3a4f")
-    ax.axhline(0.5, color="#6b7a90", linestyle="--", linewidth=1, label="Decision threshold")
+    if uncertainty is None:
+        uncertainty = compute_probability_uncertainty(probs)
+
+    mean = uncertainty["mean"]
+    lower = uncertainty["lower"]
+    upper = uncertainty["upper"]
+    std = uncertainty["std"]
+
+    # Mean ± 1 SD uncertainty band
+    ax.axhspan(
+        lower, upper,
+        color="#5b8def", alpha=0.18,
+        label=f"Mean ± 1 SD  [{lower:.0%} – {upper:.0%}]",
+        zorder=1,
+    )
+    ax.axhline(
+        mean, color="#5b8def", linestyle="-", linewidth=2,
+        label=f"Mean μ = {mean:.0%}  (σ = {std:.0%})",
+        zorder=3,
+    )
+    ax.axhline(
+        0.5, color="#f0c040", linestyle="--", linewidth=1.5,
+        label="Decision threshold = 0.5",
+        zorder=3,
+    )
+
+    ax.bar(
+        starts, probs, width=widths, align="edge",
+        color=colors, alpha=0.85, edgecolor="#2d3a4f", zorder=2,
+    )
+
     ax.set_xlabel("Time in voice recording (seconds)", color="#a8b8d0")
     ax.set_ylabel("Depression probability", color="#a8b8d0")
-    ax.set_title("Where in your voice: depression score at each moment", color="#e8edf5", fontsize=11)
-    ax.set_ylim(0, 1.05)
+    title = (
+        f"Voice Timeline — decision at 0.5 | uncertainty: {uncertainty['stability_label']}"
+    )
+    ax.set_title(title, color="#e8edf5", fontsize=11)
+    ax.set_ylim(0, 1.08)
     ax.tick_params(colors="#a8b8d0")
     for spine in ax.spines.values():
         spine.set_color("#2d3a4f")
-    ax.legend(facecolor="#1a2332", edgecolor="#2d3a4f", labelcolor="#a8b8d0")
+    ax.legend(
+        facecolor="#1a2332", edgecolor="#2d3a4f", labelcolor="#a8b8d0",
+        loc="upper right", fontsize=8,
+    )
 
     plt.tight_layout()
     return fig

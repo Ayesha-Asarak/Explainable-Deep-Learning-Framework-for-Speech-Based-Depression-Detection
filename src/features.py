@@ -13,16 +13,33 @@ from .config import (
 )
 
 
-def load_audio(path: str, max_duration=None) -> np.ndarray:
-    """Load and preprocess audio: mono, resampled, normalized."""
-    y, _ = librosa.load(path, sr=SAMPLE_RATE, mono=True, duration=max_duration)
-    y = librosa.effects.trim(y, top_db=25)[0]
+def preprocess_audio(
+    y: np.ndarray,
+    trim: bool = True,
+    normalize: bool = True,
+) -> np.ndarray:
+    """Optionally trim and peak-normalize an audio array."""
+    y = np.asarray(y, dtype=np.float32)
+    if trim:
+        y = librosa.effects.trim(y, top_db=25)[0]
     if len(y) == 0:
         return np.zeros(SAMPLE_RATE, dtype=np.float32)
-    peak = np.max(np.abs(y))
-    if peak > 0:
-        y = y / peak
+    if normalize:
+        peak = np.max(np.abs(y))
+        if peak > 0:
+            y = y / peak
     return y.astype(np.float32)
+
+
+def load_audio(
+    path,
+    max_duration=None,
+    trim: bool = True,
+    normalize: bool = True,
+) -> np.ndarray:
+    """Load audio as 16 kHz mono, then optionally trim and normalize."""
+    y, _ = librosa.load(path, sr=SAMPLE_RATE, mono=True, duration=max_duration)
+    return preprocess_audio(y, trim=trim, normalize=normalize)
 
 
 def segment_audio(y: np.ndarray, segment_duration: float, overlap: float) -> list[np.ndarray]:

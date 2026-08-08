@@ -9,7 +9,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .explain import plot_grad_cam, plot_full_spectrogram, plot_timeline_chart
+from .explain import (
+    plot_grad_cam,
+    plot_occlusion_map,
+    plot_full_spectrogram,
+    plot_timeline_chart,
+)
 
 
 def fig_to_base64(fig) -> str:
@@ -32,15 +37,37 @@ def result_to_json(result: dict) -> dict:
     )
     spectrogram_b64 = fig_to_base64(fig_spec)
 
-    fig_cam = plot_grad_cam(
-        result["best_spectrogram"],
-        result["grad_cam"],
-        segment_start_sec=result["key_segment_start_sec"],
-        title=f"Grad-CAM at {_fmt(result['key_segment_start_sec'])} – {_fmt(result['key_segment_end_sec'])}",
-    )
+    if result.get("attribution_method") == "segment_occlusion":
+        fig_cam = plot_occlusion_map(
+            result["full_mel"],
+            result["full_times"],
+            result["grad_cam"],
+            result["segment_details"],
+            key_start_sec=result["key_segment_start_sec"],
+            key_end_sec=result["key_segment_end_sec"],
+            title=(
+                "Occlusion map — leave-one-segment-out importance "
+                f"(peak {_fmt(result['key_segment_start_sec'])}"
+                f" – {_fmt(result['key_segment_end_sec'])})"
+            ),
+        )
+    else:
+        fig_cam = plot_grad_cam(
+            result["best_spectrogram"],
+            result["grad_cam"],
+            segment_start_sec=result["key_segment_start_sec"],
+            title=(
+                f"Grad-CAM at {_fmt(result['key_segment_start_sec'])}"
+                f" – {_fmt(result['key_segment_end_sec'])}"
+            ),
+        )
     grad_cam_b64 = fig_to_base64(fig_cam)
 
-    fig_timeline = plot_timeline_chart(result["segment_details"], result["prediction"])
+    fig_timeline = plot_timeline_chart(
+        result["segment_details"],
+        result["prediction"],
+        uncertainty=result.get("uncertainty"),
+    )
     timeline_b64 = fig_to_base64(fig_timeline)
 
     fig_bar, ax = plt.subplots(figsize=(8, 5), facecolor="#0f1419")
@@ -54,7 +81,11 @@ def result_to_json(result: dict) -> dict:
     ax.set_yticklabels(names, color="#a8b8d0", fontsize=9)
     ax.invert_yaxis()
     ax.set_xlabel("Feature Importance", color="#a8b8d0")
-    ax.set_title("Top Acoustic Features (SHAP)", color="#e8edf5", fontsize=11)
+    ax.set_title(
+        "Top Acoustic Features (descriptive)",
+        color="#e8edf5",
+        fontsize=11,
+    )
     ax.tick_params(colors="#a8b8d0")
     for spine in ax.spines.values():
         spine.set_color("#2d3a4f")
@@ -89,6 +120,16 @@ def result_to_json(result: dict) -> dict:
         "audio_duration_sec": round(result["audio_duration_sec"], 1),
         "n_segments": result["n_segments"],
         "prediction_reason": result["prediction_reason"],
+        "uncertainty": {
+            "mean": round(result.get("uncertainty", {}).get("mean", result["probability_depressed"]), 4),
+            "std": round(result.get("uncertainty", {}).get("std", 0.0), 4),
+            "lower": round(result.get("uncertainty", {}).get("lower", 0.0), 4),
+            "upper": round(result.get("uncertainty", {}).get("upper", 0.0), 4),
+            "threshold": result.get("uncertainty", {}).get("threshold", 0.5),
+            "stability": result.get("uncertainty", {}).get("stability", "unknown"),
+            "stability_label": result.get("uncertainty", {}).get("stability_label", "—"),
+            "message": result.get("uncertainty", {}).get("message", ""),
+        },
         "key_segment": {
             "start_sec": result["key_segment_start_sec"],
             "end_sec": result["key_segment_end_sec"],
@@ -97,6 +138,8 @@ def result_to_json(result: dict) -> dict:
         "segment_probabilities": [round(p, 4) for p in result["segment_probabilities"]],
         "segment_explanations": result["segment_explanations"],
         "summary": result["summary"],
+        "model_version": result.get("model_version", {}),
+        "attribution_method": result.get("attribution_method", "grad_cam"),
         "acoustic_features": {k: round(v, 4) for k, v in acoustic.items()},
         "feature_importance": [
             {"name": k.replace("_", " ").title(), "key": k, "value": round(v, 4)}
