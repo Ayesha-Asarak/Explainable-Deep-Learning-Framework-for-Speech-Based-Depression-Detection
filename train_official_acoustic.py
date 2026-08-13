@@ -48,7 +48,7 @@ def aggregate(vectors):
             np.percentile(values, 25, axis=0),
             np.percentile(values, 75, axis=0),
         ]
-    ).astype(np.float32)
+    ).astype(np.float32) 
 
 
 def searches(cv):

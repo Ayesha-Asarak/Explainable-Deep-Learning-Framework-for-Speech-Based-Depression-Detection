@@ -34,6 +34,11 @@ venv/
 /INTERVIEW_GUIDE.pdf
 /SUPERVISOR_PROJECT_REPORT.html
 /SUPERVISOR_PROJECT_REPORT.pdf
+/docs/01_Writing_and_Viva/INTERVIEW_GUIDE.html
+/docs/01_Writing_and_Viva/INTERVIEW_GUIDE.pdf
+/docs/01_Writing_and_Viva/SUPERVISOR_PROJECT_REPORT.html
+/docs/01_Writing_and_Viva/SUPERVISOR_PROJECT_REPORT.pdf
+.matplotlib/
 
 # Stored patient personal data & analysis records
 /patient_records/

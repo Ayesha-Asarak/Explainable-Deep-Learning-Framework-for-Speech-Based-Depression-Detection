@@ -112,13 +112,7 @@ def load_official_label_metadata() -> dict[str, dict]:
 
 
 def discover_audio_sources(data_dir: Path, include_zips: bool = True) -> tuple[list[dict], list[str]]:
-    """
-    Discover extracted WAVs and WAVs stored inside participant ZIP archives.
-
-    Extracted WAVs are preferred when both formats exist. Participant IDs found
-    under both class folders are excluded to prevent contradictory labels.
-    Returns (sources, conflicting_participant_ids).
-    """
+   
     by_label = {1: {}, 0: {}}
 
     for label, folder in [(1, DEPRESSED_DIR), (0, NON_DEPRESSED_DIR)]:
@@ -288,7 +282,7 @@ def _participant_only_audio(
     intervals: list[tuple[float, float]],
     max_duration=None,
 ) -> np.ndarray:
-    """Concatenate only participant turns, capped by participant speech duration."""
+   
     chunks = []
     remaining_samples = (
         int(max_duration * SAMPLE_RATE) if max_duration is not None else None
@@ -502,10 +496,7 @@ def fixed_participant_split(
     test_ratio: float = 0.22,
     seed: int = 42,
 ) -> dict:
-    """
-    Stratified participant split. The held-out test participants must never be
-    used for model/threshold selection.
-    """
+ 
     by_label = {0: [], 1: []}
     for entry in manifest:
         by_label[int(entry["label"])].append(entry["participant_id"])
@@ -555,10 +546,7 @@ def build_segment_dataset(
     include_zips: bool = True,
     participant_only: bool = True,
 ) -> tuple[list[np.ndarray], list[np.ndarray], list[dict]]:
-    """
-    Build mel spectrogram segments and acoustic feature vectors.
-    Returns (spectrograms, labels, metadata_per_segment).
-    """
+ 
     spectrograms, labels, metadata = [], [], []
     sources, conflicts = discover_audio_sources(data_dir, include_zips=include_zips)
     print(

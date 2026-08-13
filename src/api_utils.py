@@ -139,7 +139,13 @@ def result_to_json(result: dict) -> dict:
         "segment_explanations": result["segment_explanations"],
         "summary": result["summary"],
         "model_version": result.get("model_version", {}),
-        "attribution_method": result.get("attribution_method", "grad_cam"),
+        "attribution_method": result.get("attribution_method")
+        or (
+            "segment_occlusion"
+            if (result.get("model_version") or {}).get("active_model")
+            in {"acoustic", "ssl"}
+            else "grad_cam"
+        ),
         "acoustic_features": {k: round(v, 4) for k, v in acoustic.items()},
         "feature_importance": [
             {"name": k.replace("_", " ").title(), "key": k, "value": round(v, 4)}

@@ -208,6 +208,9 @@ def save_patient_record(patient: dict, analysis: dict, audio_filename: str = "")
             "acoustic_features": analysis.get("acoustic_features"),
             "segment_explanations": analysis.get("segment_explanations"),
             "timeline_explanations": analysis.get("timeline_explanations"),
+            "attribution_method": analysis.get("attribution_method")
+            or "segment_occlusion",
+            "model_version": analysis.get("model_version") or {},
             "charts_available": charts_meta,
         },
     }
@@ -298,6 +301,9 @@ def record_to_view(record: dict) -> dict:
         },
         "has_charts": bool(charts),
         "from_saved_record": True,
+        "attribution_method": analysis.get("attribution_method")
+        or "segment_occlusion",
+        "model_version": analysis.get("model_version") or {"active_model": "acoustic"},
     }
 
 

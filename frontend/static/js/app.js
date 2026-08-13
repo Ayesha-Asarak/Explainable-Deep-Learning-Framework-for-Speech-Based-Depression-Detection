@@ -391,7 +391,13 @@ function renderResults(data) {
   setChart("gradCamImg", charts.grad_cam);
   setChart("featuresImg", charts.features);
 
-  const useOcclusion = (data.attribution_method || "") === "segment_occlusion";
+  // Deployed acoustic/SSL path uses occlusion; only CNN uses Grad-CAM.
+  const method = data.attribution_method || "";
+  const active = (data.model_version && data.model_version.active_model) || "";
+  const useOcclusion =
+    method === "segment_occlusion" ||
+    (method !== "grad_cam" &&
+      (active === "acoustic" || active === "ssl" || method === ""));
   const gradcamTabBtn = document.getElementById("gradcamTabBtn");
   const gradcamHeading = document.getElementById("gradcamHeading");
   const gradcamDesc = document.getElementById("gradcamDesc");

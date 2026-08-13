@@ -12,7 +12,6 @@ from .config import (
     FEATURE_NAMES,
 )
 
-
 def preprocess_audio(
     y: np.ndarray,
     trim: bool = True,
@@ -45,7 +44,6 @@ def load_audio(
 def segment_audio(y: np.ndarray, segment_duration: float, overlap: float) -> list[np.ndarray]:
     """Split audio into overlapping fixed-length segments."""
     return [s["audio"] for s in segment_audio_with_times(y, segment_duration, overlap)]
-
 
 def segment_audio_with_times(
     y: np.ndarray, segment_duration: float, overlap: float

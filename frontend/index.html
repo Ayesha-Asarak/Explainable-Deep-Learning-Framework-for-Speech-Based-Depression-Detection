@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/style.css?v=occlusion2" />
 </head>
 <body>
   <div class="bg-gradient"></div>
@@ -224,10 +224,10 @@
       <div class="info-card card">
         <h3>🔬 Methodology</h3>
         <ul>
-          <li>Noise removal & audio normalization</li>
-          <li>MFCC & mel-spectrogram extraction</li>
-          <li>CNN spatial-temporal pattern learning</li>
-          <li>Grad-CAM + SHAP explainability</li>
+          <li>Participant-only speech + acoustic features</li>
+          <li>Random Forest (deployed) + occlusion XAI</li>
+          <li>CNN + Grad-CAM kept as baseline only</li>
+          <li>Official AVEC train/dev/test evaluation</li>
         </ul>
       </div>
       <div class="info-card card">
@@ -256,6 +256,6 @@
   </footer>
 
   <div id="toast" class="toast hidden"></div>
-  <script src="/static/js/app.js"></script>
+  <script src="/static/js/app.js?v=occlusion2"></script>
 </body>
 </html>
